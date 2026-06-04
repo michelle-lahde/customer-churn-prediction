@@ -2,7 +2,7 @@
 
 An end-to-end machine learning project that predicts whether a telecom customer will cancel their subscription, deployed as an interactive web app.
 
-🔗 **[Live App](https://customer-churn-prediction-ycsvjm4qh4sfjzludzs3cx.streamlit.app)** | 📓 **[Notebook](https://github.com/michelle-lahde/telco-customer-churn-/blob/main/customer-churn-prediction.ipynb)**
+🔗 **[Live App](https://customer-churn-prediction-ycsvjm4qh4sfjzludzs3cx.streamlit.app)** | 📓 **[Notebook](https://github.com/michelle-lahde/telco-customer-churn-/customer-churn-prediction.ipynb)**
 
 ---
 
