@@ -8,7 +8,7 @@ An end-to-end machine learning project that predicts whether a telecom customer 
 
 ## Overview
 
-Customer churn is one of the biggest challenges in the telecom industry. Losing a customer is far more costly than retaining one. This project uses real telecom data to build a machine learning model that predicts which customers are at risk of leaving — giving businesses the chance to intervene early.
+Customer churn is one of the biggest challenges in the telecom industry, and losing a customer costs a lot more than retaining one. This project uses real telecom data to build a machine learning model that predicts which customers are at risk of leaving; giving businesses important insights and the chance to intervene early.
 
 ---
 
