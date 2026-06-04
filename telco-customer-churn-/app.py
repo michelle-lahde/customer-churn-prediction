@@ -2,15 +2,29 @@ import streamlit as st
 import pickle
 import numpy as np
 import pandas as pd
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
 
-# Load the saved model
-with open('churn_model.pkl', 'rb') as f:
-    model = pickle.load(f)
+@st.cache_resource
+def load_model():
+    df = pd.read_csv('WA_Fn-UseC_-Telco-Customer-Churn.csv')
+    df = df.drop('customerID', axis=1)
+    df['TotalCharges'] = pd.to_numeric(df['TotalCharges'], errors='coerce')
+    df = df.dropna()
+    df['Churn'] = df['Churn'].map({'Yes': 1, 'No': 0})
+    df = pd.get_dummies(df, drop_first=True)
+    X = df.drop('Churn', axis=1)
+    y = df['Churn']
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    model = LogisticRegression(max_iter=2000)
+    model.fit(X_train, y_train)
+    return model
+
+model = load_model()
 
 st.title('Customer Churn Predictor')
 st.write('Enter customer details below to predict if they will churn')
 
-# Input fields
 tenure = st.slider('Tenure (months)', 0, 72, 12)
 monthly_charges = st.slider('Monthly Charges ($)', 18, 119, 64)
 total_charges = tenure * monthly_charges
@@ -31,7 +45,6 @@ contract = st.selectbox('Contract Type', ['Month-to-month', 'One year', 'Two yea
 paperless_billing = st.selectbox('Paperless Billing', ['No', 'Yes'])
 payment_method = st.selectbox('Payment Method', ['Bank transfer (automatic)', 'Credit card (automatic)', 'Electronic check', 'Mailed check'])
 
-# Build input dataframe matching training columns
 input_dict = {
     'SeniorCitizen': [1 if senior_citizen == 'Yes' else 0],
     'tenure': [tenure],
@@ -67,7 +80,6 @@ input_dict = {
 
 input_df = pd.DataFrame(input_dict)
 
-# Predict button
 if st.button('Predict Churn'):
     prediction = model.predict(input_df)
     probability = model.predict_proba(input_df)[0][1]
