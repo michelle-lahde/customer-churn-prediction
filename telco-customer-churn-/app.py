@@ -7,7 +7,7 @@ from sklearn.model_selection import train_test_split
 
 @st.cache_resource
 def load_model():
-    df = pd.read_csv('WA_Fn-UseC_-Telco-Customer-Churn.csv')
+    df = pd.read_csv('telco_churn.csv')
     df = df.drop('customerID', axis=1)
     df['TotalCharges'] = pd.to_numeric(df['TotalCharges'], errors='coerce')
     df = df.dropna()
