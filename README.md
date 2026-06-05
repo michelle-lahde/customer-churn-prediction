@@ -82,7 +82,7 @@ The dataset is the **IBM Telco Customer Churn** dataset, publicly available on [
 
 ```bash
 # Clone the repository
-git clone https://github.com/michelle-lahde/telco-customer-churn-
+git clone https://github.com/michelle-lahde/customer-churn-prediction/telco-customer-churn-
 
 # Install dependencies
 pip install -r requirements.txt
